@@ -9,17 +9,15 @@ export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
-    // Biarkan model menyesuaikan bahasa input user
-    const fullPrompt = `Please write a mini blog based on the following topic, using the same language as the input. Limit your answer to 600 characters. Make it clear, concise, and easy to understand. Use Markdown lists if needed. Do not add a title, disclaimer, or emoji.${prompt}`;
+    const fullPrompt = `Please write a mini blog based on the following topic, using the same language as the input. Do not exceed 1500 characters (including spaces). Stop once you reach the limit. Make it clear, concise, and easy to understand. Use Markdown lists if needed. Do not add a title, disclaimer, or emoji.${prompt}`;
 
     const output = await replicate.run("ibm-granite/granite-3.3-8b-instruct", {
       input: {
         prompt: fullPrompt,
-        max_new_tokens: 1000,
+        max_new_tokens: 600,
       },
     });
 
-    // Rapikan hasil biar pasti string
     const result = Array.isArray(output) ? output.join("\n\n") : String(output);
 
     return NextResponse.json({ result });

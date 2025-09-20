@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import CardHistory from "../../components/CardHistory";
+import EmptyState from "../../components/EmptyState";
+import PageTransition from "../../components/PageTransition";
 
 type BlogHistory = { input: string; result: string };
 
 export default function HistoryPage() {
   const [history, setHistory] = useState<BlogHistory[]>([]);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("blogHistory") || "[]");
@@ -17,34 +19,37 @@ export default function HistoryPage() {
     const newHistory = history.filter((_, i) => i !== idx);
     setHistory(newHistory);
     localStorage.setItem("blogHistory", JSON.stringify(newHistory));
-    if (selected === idx) setSelected(null);
+    if (expandedIndex === idx) setExpandedIndex(null);
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">History</h1>
-      <div className="flex flex-col gap-4">
+    <PageTransition>
+      <div className="p-8">
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">History</h1>
+
         {history.length === 0 ? (
-          <div className="flex flex-col items-center justify-center text-gray-500 mt-12">
-            <div className="text-5xl mb-4">📜</div>
-            <p className="text-lg font-medium">No history yet</p>
-            <p className="text-sm text-gray-400">
-              Generate some results and they’ll appear here.
-            </p>
-          </div>
+          <EmptyState
+            icon="📝"
+            title="No history yet"
+            description="Start generating mini blogs, and your history will appear here."
+          />
         ) : (
-          history.map((item, idx) => (
-            <CardHistory
-              key={idx}
-              input={item.input}
-              result={item.result}
-              expanded={selected === idx}
-              onClick={() => setSelected(selected === idx ? null : idx)}
-              onDelete={() => handleDelete(idx)}
-            />
-          ))
+          <div className="flex flex-wrap gap-4">
+            {history.map((item, idx) => (
+              <CardHistory
+                key={idx}
+                input={item.input}
+                result={item.result}
+                expanded={expandedIndex === idx}
+                onClick={() =>
+                  setExpandedIndex(expandedIndex === idx ? null : idx)
+                }
+                onDelete={() => handleDelete(idx)}
+              />
+            ))}
+          </div>
         )}
       </div>
-    </div>
+    </PageTransition>
   );
 }
