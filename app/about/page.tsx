@@ -24,6 +24,25 @@ export default function AboutPage() {
             designed to support natural language processing and code generation
             tasks.
           </p>
+
+          <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <a
+              href="https://github.com/SalmanFrs/Mini-Blog-IBM"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 bg-gray-50 hover:bg-gray-100 rounded-lg shadow transition"
+            >
+              <Image
+                src="/github-logo.svg"
+                alt="Github Logo"
+                width={40}
+                height={40}
+              />
+              <span className="text-sm font-medium text-gray-700">
+                Mini-Blog-IBM
+              </span>
+            </a>
+          </div>
         </CardAbout>
 
         <CardAbout title="Goals">
