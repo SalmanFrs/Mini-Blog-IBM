@@ -88,7 +88,7 @@ export default function ProfilePage() {
                 <FaGithub />
               </a>
               <a
-                href="https://linkedin.com/in/your-linkedin"
+                href="https://linkedin.com/in/salman-faris-alhaitami"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 transition"
@@ -96,7 +96,7 @@ export default function ProfilePage() {
                 <FaLinkedin />
               </a>
               <a
-                href="https://instagram.com/your-instagram"
+                href="https://instagram.com/slmnfrs03/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-pink-500 transition"

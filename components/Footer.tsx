@@ -52,7 +52,7 @@ export default function Footer() {
           <ul className="space-y-2">
             <li>
               <a
-                href="https://www.linkedin.com/in/salman-faris-alhaitami"
+                href="https://linkedin.com/in/salman-faris-alhaitami"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white transition"
@@ -74,7 +74,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://www.instagram.com/slmnfrs03/"
+                href="https://instagram.com/slmnfrs03/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white transition"
